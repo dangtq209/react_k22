@@ -5,21 +5,22 @@ export default class Detail extends Component {
      constructor(props) {
           super(props)
           this.state = {
-               posts: []
+               comments: []
           }
      }
 
      componentDidMount() {
-          axios.get("https://jsonplaceholder.typicode.com/posts").then(data => {
+          axios.get("https://jsonplaceholder.typicode.com/comments").then(data => {
                if (data && data.data && data.data.length) {
                     this.setState({
-                         posts: data.data
+                         comments: data.data
                     })
                }
           }).catch((err) => {
                console.log(err)
           })
      }
+
      render() {
           return (
                <>
@@ -43,15 +44,7 @@ export default class Detail extends Component {
                                                             <h6 className="date">on Sep 29, 2017 at 9:48 am</h6>
                                                        </div>
                                                   </div>
-                                                  <h3 className="title"><a href="google.com">
-                                                       {
-                                                            this.state.posts.map(item => {
-                                                                 return (
-                                                                      <b key={item.id}>{item.title}</b>
-                                                                 )
-                                                            })
-                                                       }
-                                                  </a></h3>
+                                                  <h3 className="title"><a href="google.com"><b>ABC</b></a></h3>
                                                   <p className="para">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
                                                   dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
                                                   ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
@@ -207,56 +200,29 @@ export default class Detail extends Component {
                                              </form>
                                         </div>
                                         <h4><b>COMMENTS(12)</b></h4>
-                                        <div className="commnets-area">
-                                             <div className="comment">
-                                                  <div className="post-info">
-                                                       <div className="left-area">
-                                                            <a className="avatar" href="google.com"><img src="images/avatar-1-120x120.jpg" alt="" /></a>
+                                        {
+                                             this.state.comments.map(item => {
+                                                  return (
+                                                       <div className="commnets-area">
+                                                            <div className="comment">
+                                                                 <div className="post-info">
+                                                                      <div className="left-area">
+                                                                           <a className="avatar" href="google.com"><img src="images/avatar-1-120x120.jpg" alt="" /></a>
+                                                                      </div>
+                                                                      <div className="middle-area">
+                                                                           <a className="name" href="google.com"><b key={item.id}>{item.name}</b></a>
+                                                                           <h6 className="date">on Sep 29, 2017 at 9:48 am</h6>
+                                                                      </div>
+                                                                      <div className="right-area">
+                                                                           <h5 className="reply-btn" ><a href="google.com"><b>REPLY</b></a></h5>
+                                                                      </div>
+                                                                 </div>
+                                                                 <p>{item.body}</p>
+                                                            </div>
                                                        </div>
-                                                       <div className="middle-area">
-                                                            <a className="name" href="google.com"><b>Katy Liu</b></a>
-                                                            <h6 className="date">on Sep 29, 2017 at 9:48 am</h6>
-                                                       </div>
-                                                       <div className="right-area">
-                                                            <h5 className="reply-btn" ><a href="google.com"><b>REPLY</b></a></h5>
-                                                       </div>
-                                                  </div>
-                                                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur Ut enim ad minim veniam</p>
-                                             </div>
-                                             <div className="comment">
-                                                  <h5 className="reply-for">Reply for <a href="google.com"><b>Katy Lui</b></a></h5>
-                                                  <div className="post-info">
-                                                       <div className="left-area">
-                                                            <a className="avatar" href="google.com"><img src="images/avatar-1-120x120.jpg" alt="" /></a>
-                                                       </div>
-                                                       <div className="middle-area">
-                                                            <a className="name" href="google.com"><b>Katy Liu</b></a>
-                                                            <h6 className="date">on Sep 29, 2017 at 9:48 am</h6>
-                                                       </div>
-                                                       <div className="right-area">
-                                                            <h5 className="reply-btn" ><a href="google.com"><b>REPLY</b></a></h5>
-                                                       </div>
-                                                  </div>
-                                                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur Ut enim ad minim veniam</p>
-                                             </div>
-                                        </div>
-                                        <div className="commnets-area ">
-                                             <div className="comment">
-                                                  <div className="post-info">
-                                                       <div className="left-area">
-                                                            <a className="avatar" href="google.com"><img src="images/avatar-1-120x120.jpg" alt="" /></a>
-                                                       </div>
-                                                       <div className="middle-area">
-                                                            <a className="name" href="google.com"><b>Katy Liu</b></a>
-                                                            <h6 className="date">on Sep 29, 2017 at 9:48 am</h6>
-                                                       </div>
-                                                       <div className="right-area">
-                                                            <h5 className="reply-btn" ><a href="google.com"><b>REPLY</b></a></h5>
-                                                       </div>
-                                                  </div>
-                                                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur Ut enim ad minim veniam</p>
-                                             </div>
-                                        </div>
+                                                  )
+                                             })
+                                        }
                                         <a className="more-comment-btn" href="google.com"><b>VIEW MORE COMMENTS</b></a>
                                    </div>
                               </div>
