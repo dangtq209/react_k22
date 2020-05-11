@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import loadData from './../ConnectAPI'
-
+import { NavLink } from 'react-router-dom'
 
 class Main extends React.Component {
      constructor(props) {
@@ -11,7 +11,8 @@ class Main extends React.Component {
                visible: 9,
                loadingState: false,
                like: [],
-               sttlike: []
+               sttlike: [],
+               arrview: []
           }
      }
 
@@ -19,15 +20,19 @@ class Main extends React.Component {
 
           loadData().then((res) => {
                this.props.run(res.data)
-               var arrLike = []
-               var arrsttlike = []
-               for (var i = 0; i < this.props.data.length; i++) {
-                    arrLike[i] = 10
-                    arrsttlike[i] = false
-               }
-               this.setState({ like: arrLike, sttlike: arrsttlike })
+               this.setState({
+                    like: this.props.like,
+                    sttlike: this.props.arrsttlike,
+                    arrview: this.props.arrview
+               })
+               //console.log(this.props.like);
+               //this.props.like = arrLike
           })
 
+     }
+
+     componentDidUpdate() {
+          this.displayItems()
      }
 
      onClickLoadMore = (e) => {
@@ -36,24 +41,25 @@ class Main extends React.Component {
 
      }
      mapData = () => {
-          var items = this.props.data.map((val, ind) => {
+          var items = this.props.data.map((val) => {
                if (val.title.length > 0) {
                     return val.title
                }
+               return 0
           })
           var x = items.map((val, ind) => {
                return <div className="col-lg-4 col-md-6" key={ind} >
                     <div className="card h-100">
                          <div className="single-post post-style-1">
-                              <div className="blog-image"><img src="/images/marion-michele-330691.jpg" alt="" /></div>
-                              <a className="avatar" href="123"><img src="/images/icons8-team-355979.jpg" alt="" /></a>
+                              <div className="blog-image"><img src="/images/marion-michele-330691.jpg" alt="Blog" /></div>
+                              <a className="avatar" href="123"><img src="/images/icons8-team-355979.jpg" alt="Profile" /></a>
                               <div className="blog-info">
-                                   <h4 className="title"><a href="123"><b>{val}</b></a></h4>
+                                   <h4 className="title" onClick={(e) => this.increaseView(e, ind)}><NavLink to="/detail"><b>{val}</b></NavLink></h4>
                                    <ul className="post-footer">
                                         <li>{(this.state.sttlike[ind] === false) ? <a href="123" onClick={(e) => this.increaseLike(e, ind)} ><i className="ion-heart" />{this.state.like[ind]}</a> :
                                              <a href="123" onClick={(e) => this.reduceLike(e, ind)} ><i className="ion-heart" />{this.state.like[ind]}</a>}</li>
                                         <li><a href="123"><i className="ion-chatbubble" />6</a></li>
-                                        <li><a href="123"><i className="ion-eye" />138</a></li>
+                                        <li><i className="ion-eye" />{this.state.arrview[ind]}</li>
                                    </ul>
                               </div>
                          </div>
@@ -69,36 +75,39 @@ class Main extends React.Component {
 
           var dataTitle = this.mapData()
           var items = []
-
           for (var i = 0; i < this.state.visible; i++) {
                items.push(dataTitle[i])
           }
           return items
      }
 
+
+     increaseView = (e, x) => {
+          e.preventDefault()
+          // this.setState({arrview[x] : this.state.arrview[x] + 1})
+          this.state.arrview[x] = this.state.arrview[x] + 1
+          this.setState({ arrview: this.state.arrview })
+     }
+
      increaseLike = (e, x) => {
           e.preventDefault()
           if (this.state.sttlike[x] === false) {
-               this.setState({ like: this.state.like + 1 })
-               //this.state.like[x] = this.state.like[x] + 1
-               this.setState({ sttlike: true })
-               //this.state.sttlike[x] = true
+               this.state.like[x] = this.state.like[x] + 1
+               this.state.sttlike[x] = true
                this.setState({ like: this.state.like })
                this.setState({ sttlike: this.state.sttlike })
-               alert(this.state.like[x])
+               //alert(this.state.like[x])
           }
      }
 
      reduceLike = (e, x) => {
           e.preventDefault()
           if (this.state.sttlike[x] === true) {
-               this.setState({ like: this.state.like - 1 })
-               //this.state.like[x] = this.state.like[x] - 1
-               this.setState({ sttlike: false })
-               //this.state.sttlike[x] = false
+               this.state.like[x] = this.state.like[x] - 1
+               this.state.sttlike[x] = false
                this.setState({ like: this.state.like })
                this.setState({ sttlike: this.state.sttlike })
-               alert(this.state.like[x])
+               //alert(this.state.like[x])
           }
      }
 
@@ -122,14 +131,19 @@ class Main extends React.Component {
 
      render() {
           return (
-               <section className="blog-area section">
-                    <div className="container">
-                         <div className="row">
-                              {this.displayItems()}
-                         </div>
-                         {(this.state.visible < this.props.data.length) ? <a className="load-more-btn" href="123" onClick={(e) => this.onClickLoadMore(e)}><b>LOAD MORE</b></a> : false}
+               <>
+                    <div className="slider display-table center-text">
+                         <h1 className="title display-table-cell"><b>BEAUTY</b></h1>
                     </div>
-               </section>
+                    <section className="blog-area section">
+                         <div className="container">
+                              <div className="row">
+                                   {this.displayItems()}
+                              </div>
+                              {(this.state.visible < this.props.data.length) ? <a className="load-more-btn" href="123" onClick={(e) => this.onClickLoadMore(e)}><b>LOAD MORE</b></a> : false}
+                         </div>
+                    </section>
+               </>
           )
      }
 }
@@ -137,7 +151,9 @@ class Main extends React.Component {
 const mapStateToProps = (state) => {
      return {
           data: state.dataAPI,
-          like: state.like
+          like: state.like,
+          arrsttlike: state.sttlike,
+          arrview: state.arrview
      }
 }
 
