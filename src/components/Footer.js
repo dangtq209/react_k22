@@ -3,52 +3,42 @@ import React, { Component } from 'react'
 export default class Footer extends Component {
      render() {
           return (
-               <footer>
-                    <div className="container">
-                         <div className="row">
-                              <div className="col-lg-4 col-md-6">
-                                   <div className="footer-section">
-                                        <a className="logo" href="google.com"><img src="images/logo.png" alt="Logo" /></a>
-                                        <p className="copyright">Bona @ 2017. All rights reserved.</p>
-                                        <p className="copyright">Designed by <a href="https://colorlib.com" >Colorlib</a></p>
-                                        <ul className="icons">
-                                             <li><a href="facebook.com"><i className="ion-social-facebook-outline" /></a></li>
-                                             <li><a href="facebook.com"><i className="ion-social-twitter-outline" /></a></li>
-                                             <li><a href="facebook.com"><i className="ion-social-instagram-outline" /></a></li>
-                                             <li><a href="facebook.com"><i className="ion-social-vimeo-outline" /></a></li>
-                                             <li><a href="facebook.com"><i className="ion-social-pinterest-outline" /></a></li>
-                                        </ul>
+               <>
+                    <div id="footer-top">
+                         <div class="container">
+                              <div class="row">
+                                   <div id="logo-2" class="col-lg-3 col-md-6 col-sm-12">
+                                        <h2><a href="#"><img src="images/logo-footer.png" /></a></h2>
+                                        <p>Vietpro Academy thành lập năm 2009. Chúng tôi đào tạo chuyên sâu trong 2 lĩnh vực là Lập trình Website & Mobile nhằm cung cấp cho thị trường CNTT Việt Nam những lập trình viên thực sự chất lượng, có khả năng làm việc độc lập, cũng như Team Work ở mọi môi trường đòi hỏi sự chuyên nghiệp cao.</p>
                                    </div>
-                              </div>
-                              <div className="col-lg-4 col-md-6">
-                                   <div className="footer-section">
-                                        <h4 className="title"><b>CATAGORIES</b></h4>
-                                        <ul>
-                                             <li><a href="google.com">BEAUTY</a></li>
-                                             <li><a href="google.com">HEALTH</a></li>
-                                             <li><a href="google.com">MUSIC</a></li>
-                                        </ul>
-                                        <ul>
-                                             <li><a href="google.com">SPORT</a></li>
-                                             <li><a href="google.com">DESIGN</a></li>
-                                             <li><a href="google.com">TRAVEL</a></li>
-                                        </ul>
+                                   <div id="address" class="col-lg-3 col-md-6 col-sm-12">
+                                        <h3>Địa chỉ</h3>
+                                        <p>B8A Võ Văn Dũng - Hoàng Cầu Đống Đa - Hà Nội</p>
+                                        <p>Số 25 Ngõ 178/71 - Tây Sơn Đống Đa - Hà Nội</p>
                                    </div>
-                              </div>
-                              <div className="col-lg-4 col-md-6">
-                                   <div className="footer-section">
-                                        <h4 className="title"><b>SUBSCRIBE</b></h4>
-                                        <div className="input-area">
-                                             <form>
-                                                  <input className="email-input" type="text" placeholder="Enter your email" />
-                                                  <button className="submit-btn" type="submit"><i className="icon ion-ios-email-outline" /></button>
-                                             </form>
-                                        </div>
+                                   <div id="service" class="col-lg-3 col-md-6 col-sm-12">
+                                        <h3>Dịch vụ</h3>
+                                        <p>Bảo hành rơi vỡ, ngấm nước Care Diamond</p>
+                                        <p>Bảo hành Care X60 rơi vỡ ngấm nước vẫn Đổi mới</p>
+                                   </div>
+                                   <div id="hotline" class="col-lg-3 col-md-6 col-sm-12">
+                                        <h3>Hotline</h3>
+                                        <p>Phone Sale: (+84) 0988 550 553</p>
+                                        <p>Email: vietpro.edu.vn@gmail.com</p>
                                    </div>
                               </div>
                          </div>
                     </div>
-               </footer>
+                    <div id="footer-bottom">
+                         <div class="container">
+                              <div class="row">
+                                   <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <p>2018 © Vietpro Academy. All rights reserved. Developed by Vietpro Software.</p>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </>
           )
      }
 }

@@ -1,25 +1,32 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+
 export default class Header extends Component {
      render() {
           return (
-                    <header>
-                         <div className="container-fluid position-relative no-side-padding">
-                              <a href="google.com" className="logo"><img src="images/logo.png" alt="Logo" /></a>
-                              <div className="menu-nav-icon" data-nav-menu="#main-menu"><i className="ion-navicon" /></div>
-                              <ul className="main-menu visible-on-click" id="main-menu">
-                                   <li><Link to="/">Home</Link></li>
-                                   <li><a href="google.com">Categories</a></li>
-                                   <li><a href="google.com">Features</a></li>
-                              </ul>
-                              <div className="src-area">
-                                   <form>
-                                        <button className="src-btn" type="submit"><i className="ion-ios-search-strong" /></button>
-                                        <input className="src-input" type="text" placeholder="Type of search" />
-                                   </form>
+               <>
+                    <div id="header">
+                         <div class="container">
+                              <div class="row">
+                                   <div id="logo" class="col-lg-3 col-md-3 col-sm-12">
+                                        <h1><Link to="/"><img class="img-fluid" src="images/logo.png" /></Link></h1>
+                                   </div>
+                                   <div id="search" class="col-lg-6 col-md-6 col-sm-12">
+                                        <form class="form-inline">
+                                             <input class="form-control mt-3" type="search" placeholder="Tìm kiếm" aria-label="Search" />
+                                             <button class="btn btn-danger mt-3" type="submit">Tìm kiếm</button>
+                                        </form>
+                                   </div>
+                                   <div id="cart" class="col-lg-3 col-md-3 col-sm-12">
+                                        <a class="mt-4 mr-2" href="#">giỏ hàng</a><span class="mt-3">8</span>
+                                   </div>
                               </div>
                          </div>
-                    </header>
+                         <button class="navbar-toggler navbar-light" type="button" data-toggle="collapse" data-target="#menu">
+                              <span class="navbar-toggler-icon"></span>
+                         </button>
+                    </div>
+               </>
           )
      }
 }
