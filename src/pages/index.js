@@ -1,0 +1,7 @@
+export { default as NotFoundContaine } from "./NotFound"
+export { default as HomePage } from "./Home"
+export { default as CategoryPage } from "./Category"
+export { default as Detail } from "./Detail"
+export { default as Cart } from "./Cart"
+export { default as OrderSuccess } from "./OrderSuccess"
+export { default as Search } from "./Search"
